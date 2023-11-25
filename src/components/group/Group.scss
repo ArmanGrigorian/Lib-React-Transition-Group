@@ -1,0 +1,53 @@
+.Group {
+   width: 30%;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+
+   input, button{
+      padding: 4px 8px;
+      border-radius: 4px;
+   }
+
+   &__listItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style-type: none;
+      margin-block: 6px;
+      color: white;
+      letter-spacing: 1px;
+
+      &-exit-active {
+         animation: removing-todo 500ms forwards;
+      }
+
+      &-enter-active {
+         animation: adding-todo 500ms forwards;
+      }
+   }
+}
+
+@keyframes adding-todo {
+   0% {
+      opacity: 0;
+      background-color: yellowgreen;
+   }
+
+   100% {
+      opacity: 1;
+      background-color: rgb(10, 30, 50);
+   }
+}
+
+@keyframes removing-todo {
+   0% {
+      opacity: 1;
+      background-color: red;
+   }
+
+   100% {
+      opacity: 0;
+      background-color: rgb(10, 30, 50);
+   }
+}

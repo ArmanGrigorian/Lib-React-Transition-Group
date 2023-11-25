@@ -1,0 +1,127 @@
+.Circle {
+	width: 50px;
+	height: 30px;
+	line-height: 26px;
+	border: none;
+	border: 1px solid black;
+	border-radius: 17%;
+	background-color: white;
+
+	&-enable {
+		animation: circle-enable 2000ms ease-in-out 1 forwards;
+	}
+
+	&-rotate {
+		animation: circle-rotate 20000ms linear infinite;
+	}
+
+	&-disable {
+		animation: circle-disable 2000ms ease-in-out 1;
+	}
+
+	// &.exited {
+	// 	animation: hide_button 2000ms ease-in-out 1;
+	// }
+}
+
+@mixin anim_phase_1($color) {
+	width: 50px;
+	height: 30px;
+	line-height: 26px;
+	border-width: 2px;
+	border-radius: 25%;
+	border-color: $color;
+	color: $color;
+	box-shadow: 0px 0px 4px 2px $color;
+}
+
+@mixin anim_phase_2($color) {
+	width: 200px;
+	height: 200px;
+	border-width: 5px;
+	border-style: dotted;
+	border-color: $color;
+	border-radius: 50%;
+	color: $color;
+	box-shadow: 0px 0px 8px 4px $color;
+}
+
+@mixin anim_phase_3($color) {
+	border-color: $color;
+	color: $color;
+	box-shadow: 0px 0px 8px 4px $color;
+}
+
+
+@keyframes circle-enable {
+	0% {
+		transform: translateY(0px);
+	}
+
+	50% {
+		transform: translateY(calc(50vh - 100px));
+		@include anim_phase_1(orangered);
+	}
+
+	100% {
+		transform: translateY(calc(50vh - 100px));
+		@include anim_phase_2(orangered);
+	}
+}
+
+
+
+@keyframes circle-rotate {
+	0% {
+		transform: translateY(calc(50vh - 100px)) rotateZ(0deg);
+		@include anim_phase_2(orangered);
+	}
+
+	10%,
+	90% {
+		@include anim_phase_3(orange);
+	}
+
+	20%,
+	80% {
+		@include anim_phase_3(yellow);
+	}
+
+	30%,
+	70% {
+		@include anim_phase_3(yellowgreen);
+	}
+
+	40%,
+	60% {
+		@include anim_phase_3(green);
+	}
+
+	50% {
+		@include anim_phase_3(skyblue);
+	}
+
+	100% {
+		transform: translateY(calc(50vh - 100px)) rotateZ(360deg);
+		@include anim_phase_2(orangered);
+	}
+}
+
+@keyframes circle-disable {
+	0% {
+		transform: translateY(calc(50vh - 100px));
+		@include anim_phase_2(orangered);
+	}
+
+	50% {
+		transform: translateY(calc(50vh - 100px));
+		@include anim_phase_1(orangered);
+	}
+
+	100% {
+		transform: translateY(0px);
+		width: 50px;
+		height: 30px;
+		line-height: 26px;
+	}
+}
